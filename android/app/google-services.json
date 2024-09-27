@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "147633863958",
+    "project_id": "chatapp-ecbff",
+    "storage_bucket": "chatapp-ecbff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:147633863958:android:69b8026f78b37538126437",
+        "android_client_info": {
+          "package_name": "com.example.chatapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFsRAZANFiNvMPi2F7Sk9xjC93RPlpNdg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
