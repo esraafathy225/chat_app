@@ -1,4 +1,4 @@
-import 'package:chat_app/screens/home_screen.dart';
+import 'package:chat_app/screens/chat_screen.dart';
 import 'package:chat_app/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ class AuthScreen extends StatelessWidget {
       body: StreamBuilder<User?>(
           stream: FirebaseAuth.instance.authStateChanges(), builder: (context,snapshot){
             if(snapshot.hasData){
-              return HomeScreen();
+              return ChatScreen();
             }else{
               return LoginScreen();
             }

@@ -1,3 +1,5 @@
+import 'package:chat_app/screens/register_screen.dart';
+import 'package:chat_app/services/auth/auth_services.dart';
 import 'package:chat_app/widgets/my_button.dart';
 import 'package:chat_app/widgets/my_textfield.dart';
 import 'package:chat_app/widgets/square_image.dart';
@@ -13,24 +15,11 @@ class LoginScreen extends StatelessWidget {
   void userLogin(BuildContext context) async{
     
     showDialog(context: context, builder: (context){
-      return Center(child: CircularProgressIndicator(color: Colors.teal,));
+      return const Center(child: CircularProgressIndicator(color: Colors.teal,));
     });
 
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
-      Navigator.pop(context);
-
-    } on FirebaseAuthException catch (e) {
-      print(e);
-      Navigator.pop(context);
-    } catch (e) {
-      print(e);
-      Navigator.pop(context);
-    }
-
+    final authService = AuthService();
+    authService.loginService(context, emailController.text, passwordController.text);
 
   }
 
@@ -103,15 +92,18 @@ class LoginScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 40,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Not a member?'),
-                  SizedBox(width: 4,),
-                  GestureDetector(
-                    onTap: (){Navigator.pushNamed(context, '/registerScreen');},
-                      child: Text('Register now',style: TextStyle(color: Colors.teal,fontWeight: FontWeight.bold),))
-                ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Not a member?'),
+                    SizedBox(width: 4,),
+                    GestureDetector(
+                      onTap: (){Navigator.push(context,MaterialPageRoute(builder: (context) => RegisterScreen()));},
+                        child: Text('Register now',style: TextStyle(color: Colors.teal,fontWeight: FontWeight.bold),))
+                  ],
+                ),
               )
             ],
           ),

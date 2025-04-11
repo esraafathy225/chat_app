@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../services/auth/auth_services.dart';
 import '../widgets/my_button.dart';
 import '../widgets/my_textfield.dart';
 import '../widgets/square_image.dart';
@@ -18,24 +19,8 @@ class RegisterScreen extends StatelessWidget {
       return Center(child: CircularProgressIndicator(color: Colors.teal,));
     });
 
-    try {
-      if(passwordController.text==confirmPasswordController.text) {
-        await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(
-          email: emailController.text,
-          password: passwordController.text,
-        );
-        Navigator.pop(context);
-      }
-
-    } on FirebaseAuthException catch (e) {
-      print(e);
-      Navigator.pop(context);
-    } catch (e) {
-      print(e);
-      Navigator.pop(context);
-    }
-
+    final authService = AuthService();
+    authService.registerService(context, emailController.text, passwordController.text,confirmPasswordController.text);
 
   }
 
